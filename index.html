@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <title>Fitness CEO Codex – Fitnesskurs für starke Routinen | Kurs + Kalorienrechner</title>
+  <meta name="description" content="Fitness CEO Codex: Dein Fitnesskurs für klare Struktur, messbare Ergebnisse und nachhaltige Routinen. Kostenloser Kalorienrechner + sofortiger Start." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://example.com/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fitness CEO Codex – Fitnesskurs für starke Routinen" />
+  <meta property="og:description" content="Struktur statt Chaos: Kurs + Kalorienrechner + klare Roadmap. Jetzt starten." />
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:image" content="https://example.com/og-image.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Performance: preconnect (optional) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Minimal, fast CSS (no external deps) -->
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --card:#111111;
+      --text:#f3f3f3;
+      --muted:#b3b3b3;
+      --line:#242424;
+      --accent:#7c5cff; /* single accent, no gradients */
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: var(--bg); /* solid */
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1120px; margin:0 auto; padding:24px}
+
+    header{
+      position:sticky; top:0; z-index:20;
+      background: var(--bg); /* solid */
+      border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px}
+    .logo{
+      width:36px; height:36px; border-radius:10px;
+      background: var(--accent); /* solid */
+    }
+    .navlinks{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .chip{
+      padding:9px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+      background: transparent;
+    }
+    .chip:hover{color:var(--text); border-color: #3a3a3a}
+
+    .hero{padding:44px 0 18px}
+    .grid{display:grid; gap:18px}
+    @media(min-width:960px){
+      .grid{grid-template-columns: 1.2fr .8fr; align-items:stretch}
+    }
+
+    .card{
+      background: var(--card); /* solid */
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+    }
+    .card .inner{padding:22px}
+
+    .kicker{color:var(--muted); font-weight:800; letter-spacing:.14em; text-transform:uppercase; font-size:12px}
+    h1{margin:10px 0 12px; font-size: clamp(28px, 4vw, 44px); line-height:1.1}
+    .sub{color:var(--muted); font-size:16px; margin:0 0 18px}
+
+    .badges{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 18px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px; border-radius:999px;
+      border:1px solid var(--line);
+      background: transparent;
+      color:var(--text);
+      font-weight:800; font-size:14px;
+    }
+    .dot{width:10px; height:10px; border-radius:50%; background: var(--accent)}
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .btn{
+      cursor:pointer;
+      border:none;
+      padding:12px 16px;
+      border-radius: 12px;
+      font-weight:900;
+      font-size:15px;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      background: transparent;
+    }
+    .btn-primary{
+      background: var(--accent); /* solid */
+      color:#0a0a0a;
+    }
+    .btn-secondary{
+      background: transparent;
+      border:1px solid var(--line);
+      color:var(--text);
+    }
+
+    .mini{color:var(--muted); font-size:13px; margin-top:14px}
+    .mini a{color:var(--text); text-decoration:underline; text-decoration-color:rgba(255,255,255,.25)}
+
+    .panelTitle{font-size:16px; margin:0 0 10px; font-weight:950}
+    .form{display:grid; gap:10px}
+    .row2{display:grid; gap:10px}
+    @media(min-width:520px){.row2{grid-template-columns:1fr 1fr}}
+
+    label{font-size:13px; color:var(--muted); font-weight:800}
+    input, select{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: transparent; /* no white */
+      color:var(--text);
+      outline:none;
+    }
+    input:focus, select:focus{border-color: #3a3a3a}
+
+    .result{
+      margin-top:12px;
+      padding:14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: transparent;
+    }
+    .kcal{font-size:28px; font-weight:950; letter-spacing:.2px; margin:4px 0}
+    .muted{color:var(--muted)}
+    .split{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+    .pill{
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: transparent;
+      font-weight:900;
+      color:var(--text);
+      font-size:13px;
+    }
+
+    section{padding:18px 0}
+    .sectionTitle{font-size:22px; margin:0 0 10px; font-weight:950}
+    .cols{display:grid; gap:16px}
+    @media(min-width:920px){.cols{grid-template-columns: 1fr 1fr 1fr}}
+
+    .feature{
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: transparent;
+    }
+    .feature h3{margin:0 0 6px; font-size:16px; font-weight:950}
+    .feature p{margin:0; color:var(--muted)}
+
+    .faq{display:grid; gap:12px}
+    details{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: transparent;
+      padding: 12px 14px;
+    }
+    summary{cursor:pointer; font-weight:950}
+    details p{color:var(--muted); margin:10px 0 0}
+
+    footer{
+      border-top:1px solid var(--line);
+      margin-top:24px;
+      padding:22px 0 40px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .footgrid{display:grid; gap:12px}
+    @media(min-width:820px){.footgrid{grid-template-columns: 1.2fr .8fr}}
+    .legal a{color:var(--text); text-decoration:underline; text-decoration-color:rgba(255,255,255,.25)}
+  </style>
+
+  <!-- FAQ Schema (edit answers to match your offer) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Für wen ist der Fitness CEO Codex geeignet?",
+        "acceptedAnswer":{"@type":"Answer","text":"Für Menschen, die Struktur wollen: klarer Trainingsplan, Ernährungssystem und Umsetzung statt Motivationstricks."}
+      },
+      {
+        "@type":"Question",
+        "name":"Brauche ich Fitness-Vorerfahrung?",
+        "acceptedAnswer":{"@type":"Answer","text":"Nein. Du startest auf deinem Level. Du bekommst Regeln, Progression und Checklisten, damit du nicht raten musst."}
+      },
+      {
+        "@type":"Question",
+        "name":"Was bekomme ich konkret?",
+        "acceptedAnswer":{"@type":"Answer","text":"Kursmodule + Trainingssystem + Ernährungs-Framework + Vorlagen. Optional: Community/Support (je nach Paket)."}
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Simple, solid dark UI (no gradients / blur / transitions) -->
+  <header>
+    <div class="container">
+      <div class="nav" aria-label="Hauptnavigation">
+        <a class="brand" href="#top" aria-label="Zur Startseite">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Fitness CEO Codex</span>
+        </a>
+        <nav class="navlinks" aria-label="Sektionen">
+          <a class="chip" href="#kurs">Kurs</a>
+          <a class="chip" href="#rechner">Kalorienrechner</a>
+          <a class="chip" href="#faq">FAQ</a>
+          <a class="chip" href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero" aria-label="Hero">
+      <div class="grid">
+        <!-- Left: Offer -->
+        <div class="card">
+          <div class="inner">
+            <div class="kicker">Struktur statt Chaos</div>
+            <h1>Dein Fitnesskurs, der dich führt – nicht überfordert.</h1>
+            <p class="sub">
+              Der <strong>Fitness CEO Codex</strong> ist ein klarer, umsetzbarer Kurs: Training + Ernährung + Routine.
+              Ohne Rätselraten. Ohne „Motivation“ als Plan. Du bekommst ein System.
+            </p>
+
+            <div class="badges" aria-label="Kursvorteile">
+              <div class="badge"><span class="dot" aria-hidden="true"></span> Trainingssystem mit Progression</div>
+              <div class="badge"><span class="dot" aria-hidden="true"></span> Ernährung: simpel & trackbar</div>
+              <div class="badge"><span class="dot" aria-hidden="true"></span> Routinen + Checklisten</div>
+            </div>
+
+            <div class="ctaRow">
+              <a class="btn btn-primary" href="#rechner" aria-label="Zum Kalorienrechner">Kalorien berechnen →</a>
+              <a class="btn btn-secondary" href="#kurs" aria-label="Mehr über den Kurs">Kurs ansehen</a>
+            </div>
+
+            <p class="mini">
+              CTA-Idee: Nach dem Rechner → „Schick mir dein Ergebnis“ (DM/WhatsApp) oder „Kurs starten“.
+              <br />
+              <span class="muted">Hinweis:</span> Diese Seite ist ein Template. Ersetze <em>example.com</em>, Texte und Links.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Calculator -->
+        <aside class="card" id="rechner" aria-label="Kalorienrechner">
+          <div class="inner">
+            <h2 class="panelTitle">Kalorienrechner (für deinen Start)</h2>
+            <form class="form" id="calcForm" autocomplete="on">
+              <div class="row2">
+                <div>
+                  <label for="gender">Geschlecht</label>
+                  <select id="gender" name="gender" required>
+                    <option value="male" selected>Männlich</option>
+                    <option value="female">Weiblich</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="age">Alter</label>
+                  <input id="age" name="age" type="number" min="10" max="100" value="25" required />
+                </div>
+              </div>
+
+              <div class="row2">
+                <div>
+                  <label for="height">Größe (cm)</label>
+                  <input id="height" name="height" type="number" min="120" max="230" value="181" required />
+                </div>
+                <div>
+                  <label for="weight">Gewicht (kg)</label>
+                  <input id="weight" name="weight" type="number" min="35" max="250" step="0.1" value="82" required />
+                </div>
+              </div>
+
+              <div class="row2">
+                <div>
+                  <label for="activity">Aktivität</label>
+                  <select id="activity" name="activity" required>
+                    <option value="1.2">Sitzend (kaum Sport)</option>
+                    <option value="1.375">Leicht aktiv (1–3x/Woche)</option>
+                    <option value="1.55" selected>Moderat (3–5x/Woche)</option>
+                    <option value="1.725">Sehr aktiv (6–7x/Woche)</option>
+                    <option value="1.9">Extrem (2x täglich / sehr körperlich)</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="goal">Ziel</label>
+                  <select id="goal" name="goal" required>
+                    <option value="cut" selected>Abnehmen</option>
+                    <option value="maintain">Halten</option>
+                    <option value="bulk">Aufbauen</option>
+                  </select>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Berechnen</button>
+            </form>
+
+            <div class="result" id="result" aria-live="polite">
+              <div class="split">
+                <span class="muted">Dein Zielwert (kcal/Tag)</span>
+                <span class="pill" id="method">Mifflin-St Jeor</span>
+              </div>
+              <div class="kcal" id="kcal">—</div>
+              <div class="muted" id="explain">Fülle die Felder aus und klick auf „Berechnen“.</div>
+              <div class="ctaRow" style="margin-top:12px">
+                <a class="btn btn-secondary" id="ctaLink" href="#kurs">Kurs passend dazu →</a>
+                <a class="btn btn-secondary" id="copyBtn" href="javascript:void(0)">Ergebnis kopieren</a>
+              </div>
+            </div>
+
+            <p class="mini">
+              <span class="muted">Disclaimer:</span> Schätzung für Orientierung. Keine medizinische Beratung.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="kurs" aria-label="Kursdetails">
+      <h2 class="sectionTitle">Was du im Kurs bekommst</h2>
+      <div class="cols">
+        <div class="feature">
+          <h3>1) Trainings-Blueprint</h3>
+          <p>Klare Struktur (Sätze/Wdh/Progression). Du weißt jeden Tag, was zu tun ist – und warum.</p>
+        </div>
+        <div class="feature">
+          <h3>2) Ernährung ohne Overkill</h3>
+          <p>Kalorien & Makros so simpel, dass du es wirklich durchziehst. Kein Dogma – nur Ergebnisse.</p>
+        </div>
+        <div class="feature">
+          <h3>3) Routine-System</h3>
+          <p>Checklisten, Wochenplan, Fehler-Korrektur. Du baust Konsistenz auf, statt ständig neu zu starten.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="inner">
+          <div class="kicker">Dein nächster Schritt</div>
+          <h2 style="margin:10px 0 10px; font-size:24px; font-weight:950">Wenn du willst, dass es endlich „klick“ macht:</h2>
+          <p class="sub" style="margin-bottom:14px">
+            Nutze den Kalorienrechner, kopiere dein Ergebnis und setz es direkt in ein System um.
+            Wenn du nicht alleine basteln willst: Kurs starten und geführt werden.
+          </p>
+          <div class="ctaRow">
+            <a class="btn btn-primary" href="#kontakt">Jetzt starten / Kontakt</a>
+            <a class="btn btn-secondary" href="#faq">Fragen klären</a>
+          </div>
+          <p class="mini">
+            Optional CTA: Button führt zu WhatsApp, Calendly oder Stripe/Checkout.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" aria-label="Häufige Fragen">
+      <h2 class="sectionTitle">FAQ</h2>
+      <div class="faq">
+        <details>
+          <summary>Wie schnell sehe ich Ergebnisse?</summary>
+          <p>Wenn du das System umsetzt, wirst du meist innerhalb von 2–4 Wochen klare Signale sehen (Energie, Performance, Gewichtstrend). Die „sichtbare“ Veränderung folgt dann konsistent.</p>
+        </details>
+        <details>
+          <summary>Muss ich Kalorien tracken?</summary>
+          <p>Du musst nicht für immer tracken. Aber am Anfang ist es der schnellste Hebel, um Wahrheit statt Gefühl zu bekommen. Danach kann man auf Regeln und Portions-Logik umstellen.</p>
+        </details>
+        <details>
+          <summary>Was, wenn ich wenig Zeit habe?</summary>
+          <p>Dann brauchst du erst recht Struktur. Der Kurs kann auf 3–4 kurze Einheiten/Woche und klare Basics reduziert werden – ohne dich zu verlieren.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="kontakt" aria-label="Kontakt">
+      <div class="card">
+        <div class="inner">
+          <h2 class="sectionTitle" style="margin-bottom:6px">Kontakt / CTA</h2>
+          <p class="sub" style="margin-top:0">
+            Ersetze diesen Bereich mit deinem echten Funnel:
+            <strong>WhatsApp-Link</strong>, <strong>DM-Keyword</strong>, <strong>Calendly</strong> oder <strong>Checkout</strong>.
+          </p>
+          <div class="ctaRow">
+            <a class="btn btn-primary" href="https://example.com/checkout" rel="nofollow">Kurs starten</a>
+            <a class="btn btn-secondary" href="mailto:hello@example.com">E-Mail schreiben</a>
+          </div>
+          <p class="mini">Pro-Tipp: Für SEO + Conversion: echte Testimonials, echte Ergebnisse, echte Fotos (oder starke Illustrationen) und klare Paket-Infos ergänzen.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer aria-label="Footer">
+      <div class="footgrid">
+        <div>
+          <div class="brand" style="gap:10px">
+            <span class="logo" aria-hidden="true" style="width:30px;height:30px;border-radius:10px"></span>
+            <span>Fitness CEO Codex</span>
+          </div>
+          <p style="margin:10px 0 0">
+            © <span id="year"></span> Fitness CEO Codex. Alle Rechte vorbehalten.
+          </p>
+        </div>
+        <div class="legal" style="text-align:left">
+          <p style="margin:0"><a href="#">Impressum</a> · <a href="#">Datenschutz</a> · <a href="#">AGB</a></p>
+          <p style="margin:8px 0 0">Stand: <span class="muted">Template – bitte rechtlich prüfen (DE).</span></p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function(){
+      const $ = (id) => document.getElementById(id);
+      const form = $("calcForm");
+      const kcalEl = $("kcal");
+      const explainEl = $("explain");
+      const copyBtn = $("copyBtn");
+      const ctaLink = $("ctaLink");
+
+      $("year").textContent = String(new Date().getFullYear());
+
+      function round(n){
+        return Math.round(n);
+      }
+
+      // Mifflin-St Jeor BMR
+      function bmrMifflin({gender, weightKg, heightCm, age}){
+        const base = 10*weightKg + 6.25*heightCm - 5*age;
+        return gender === "male" ? (base + 5) : (base - 161);
+      }
+
+      // Goal adjustments are conservative (can be edited)
+      function goalAdjust(tdee, goal){
+        if(goal === "cut") return tdee * 0.85;     // ~15% deficit
+        if(goal === "bulk") return tdee * 1.10;    // ~10% surplus
+        return tdee; // maintain
+      }
+
+      function compute(){
+        const gender = $("gender").value;
+        const age = Number($("age").value);
+        const height = Number($("height").value);
+        const weight = Number($("weight").value);
+        const activity = Number($("activity").value);
+        const goal = $("goal").value;
+
+        if(!age || !height || !weight || !activity) return null;
+
+        const bmr = bmrMifflin({gender, weightKg: weight, heightCm: height, age});
+        const tdee = bmr * activity;
+        const target = goalAdjust(tdee, goal);
+
+        const goalLabel = goal === "cut" ? "Abnehmen" : goal === "bulk" ? "Aufbauen" : "Halten";
+        const note = goal === "cut"
+          ? "Startwert mit moderatem Defizit. Wenn du 2 Wochen stagnierst: -150 kcal oder +2–3k Schritte." 
+          : goal === "bulk"
+          ? "Startwert mit leichtem Überschuss. Wenn du zu schnell zunimmst: -100 kcal." 
+          : "Erhaltungswert. Nutze ihn, um deine Routine stabil zu machen.";
+
+        return {bmr, tdee, target, goalLabel, note};
+      }
+
+      function render(res){
+        if(!res){
+          kcalEl.textContent = "—";
+          explainEl.textContent = "Bitte gültige Werte eingeben.";
+          return;
+        }
+        const kcal = round(res.target);
+        kcalEl.textContent = kcal.toLocaleString("de-DE") + " kcal";
+        explainEl.textContent = `${res.goalLabel}: BMR ~ ${round(res.bmr)} kcal · Erhaltung ~ ${round(res.tdee)} kcal. ${res.note}`;
+
+        // Smart CTA: after calculation, push course section
+        ctaLink.textContent = "Mit System umsetzen →";
+        ctaLink.setAttribute("href", "#kurs");
+
+        // store for copy
+        copyBtn.dataset.kcal = String(kcal);
+        copyBtn.dataset.tdee = String(round(res.tdee));
+        copyBtn.dataset.bmr = String(round(res.bmr));
+      }
+
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        const res = compute();
+        render(res);
+      });
+
+      copyBtn.addEventListener("click", async function(){
+        const kcal = copyBtn.dataset.kcal;
+        if(!kcal){
+          explainEl.textContent = "Erst berechnen, dann kopieren.";
+          return;
+        }
+        const text = `Mein Zielwert: ${kcal} kcal/Tag (Erhaltung: ${copyBtn.dataset.tdee} kcal, BMR: ${copyBtn.dataset.bmr} kcal).`;
+        try{
+          await navigator.clipboard.writeText(text);
+          explainEl.textContent = "Kopiert. Jetzt: schick mir das Ergebnis oder starte den Kurs.";
+        }catch(err){
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          explainEl.textContent = "Kopiert (Fallback). Jetzt: schick mir das Ergebnis oder starte den Kurs.";
+        }
+      });
+
+      // Auto-calc once with defaults (optional)
+      render(compute());
+    })();
+  </script>
+</body>
+</html>
